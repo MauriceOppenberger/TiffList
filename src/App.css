@@ -1,0 +1,12 @@
+.App {
+  padding: 15px;
+  max-width: 1280px;
+  margin: auto;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
