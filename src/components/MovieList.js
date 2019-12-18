@@ -5,17 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MovieListWrapper = styled.div`
-  .list {
-    display: flex;
-    flex-flow: row wrap;
-    margin: auto;
-  }
-  .list-item {
-    flex: 1;
-    width: max-content;
-    min-width: 100%;
-    margin-bottom: 1rem;
-  }
+  display: block;
 `;
 
 function fetchReducer(state, action) {
