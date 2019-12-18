@@ -86,7 +86,7 @@ function Movie(props) {
     console.log(state);
     return (
       <MovieWrapper>
-        <h1>
+        <h1 className="header">
           {state.movie.title ? state.movie.title : state.movie.original_title}
         </h1>
         {state.movie.tagline ? <h2>{state.movie.tagline}</h2> : null}
@@ -96,7 +96,7 @@ function Movie(props) {
             <p>Overview:</p>
             <p>{state.movie.overview}</p>
             {state.movie.runtime ? (
-              <smaller>Length: {state.movie.runtime} min</smaller>
+              <p>Length: {state.movie.runtime} min</p>
             ) : null}
           </div>
         ) : null}

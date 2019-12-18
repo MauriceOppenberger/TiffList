@@ -2,14 +2,26 @@ import React from "react";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
 import Cast from "./components/Cast";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 import "./App.css";
 
 function Layout({ children }) {
   return (
-    <div>
-      <Link to="/">Home</Link>
+    <div className="layout">
+      <div className="sidebar">
+        <nav className="main-nav">
+          <ul className="nav-list">
+            <li className="nav-item">
+              {" "}
+              <NavLink activeClassName="isActive" to="/">
+                <p>TIFF's List</p>
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
       {children}
     </div>
   );

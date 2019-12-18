@@ -54,7 +54,7 @@ export default function Cast(props) {
     console.log(state);
     return (
       <div>
-        <h1>{state.credit.person.name}</h1>
+        <h1 className="header">{state.credit.person.name}</h1>
 
         <ul>
           {state.movieCredits
@@ -63,7 +63,7 @@ export default function Cast(props) {
                   <Link to={`/movie/${el.id}`}>
                     <h2>{el.title}</h2>{" "}
                   </Link>
-                  <smaller>as: {el.character}</smaller>
+                  <p>as: {el.character}</p>
                 </li>
               ))
             : null}

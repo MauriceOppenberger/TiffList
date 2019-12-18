@@ -30,3 +30,44 @@ a {
   color: var(--primaryColor);
   text-decoration: none;
 }
+.layout {
+  display: flex;
+  flex-flow: row wrap;
+}
+.sidebar {
+  flex: 1;
+  max-width: 200px;
+  width: 90vw;
+  margin-right: 2rem;
+}
+.main-nav {
+  margin-top: 7.5vw;
+}
+.nav-list {
+  margin: 1.5rem;
+}
+.nav-item {
+  padding: 8px 00px;
+  border-bottom: 2px solid var(--primaryColor);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.nav-item a {
+  color: #000;
+}
+.nav-item .isActive {
+  color: var(--primaryColor);
+}
+
+.nav-item a p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+.nav-item a p:hover {
+  transform: scale(1.1);
+}
+.header {
+  margin: 2.5rem 0;
+}

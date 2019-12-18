@@ -1,11 +1,11 @@
 import React from "react";
-import { fetchMovies } from "../utils/api";
+import { fetchNewMovies } from "../utils/api";
 
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MovieListWrapper = styled.div`
-  .list {
+  /* .list {
     display: flex;
     flex-flow: row wrap;
     margin: auto;
@@ -15,7 +15,7 @@ const MovieListWrapper = styled.div`
     width: max-content;
     min-width: 100%;
     margin-bottom: 1rem;
-  }
+  } */
 `;
 
 function fetchReducer(state, action) {
@@ -23,68 +23,84 @@ function fetchReducer(state, action) {
     return {
       ...state,
       loading: true,
+      fetchList: true,
       error: null
     };
   } else if (action.type === "success") {
+    console.log(action.list[0].title);
     return {
-      movieList: state.movieList.concat(action.movies),
+      popularMovies: [...state.popularMovies, action.list],
+
       loading: false,
+      fetchList: false,
       error: null
     };
   } else if (action.type === "error") {
     return {
       ...state,
       loading: false,
-      error: action.error.message
+      error: action.error.message,
+      fetchList: false
     };
   }
 }
 const initialState = {
-  movieList: [],
+  popularMovies: [],
   loading: true,
-  error: null
+  error: null,
+  fetchList: true
 };
 function MovieList() {
   const [state, dispatch] = React.useReducer(fetchReducer, initialState);
+
   const year = new Date().getFullYear();
 
   React.useEffect(() => {
-    console.log("in effect");
-    dispatch({ type: "fetching" });
-    for (let i = 1; i <= 500; i++) {
-      fetchMovies(i, year)
-        .then(movies => {
-          dispatch({ type: "success", movies });
+    if (state.fetchList) {
+      dispatch({ type: "fetching" });
+      fetchNewMovies()
+        .then(list => {
+          dispatch({ type: "success", list });
         })
         .catch(error => {
           dispatch({ type: "error", error });
         });
     }
-  }, []);
+  }, [state.fetchList]);
+
   if (state.error) {
     return <h1>{state.error}</h1>;
   }
-  if (state.loading === false && state.movieList.length === 9999) {
-    const popularMovies = state.movieList.filter(
-      movie => movie.popularity > 10
-    );
-    console.log(state.movieList);
+  if (!state.loading) {
     return (
       <MovieListWrapper>
-        <h1>TIFF Movies in {year} </h1>
-        <ul className="list">
-          {popularMovies.map(el => (
-            <li key={el.id} className="list-item">
-              <Link to={`/movie/${el.id}`}>
-                <h2>{el.title}</h2>
-              </Link>
-              <smaller>released: {el.release_date}</smaller>
-            </li>
-          ))}
-        </ul>
+        <h1 className="header">Movies {year} </h1>
+        <div>
+          {state.popularMovies.map((arr, index) => {
+            console.log(arr, index);
+            return (
+              <ul key={index}>
+                {arr.map(el => {
+                  return (
+                    <li key={el.id} className="list-item">
+                      <Link to={`/movie/${el.id}`}>
+                        <h2>{el.title}</h2>
+                      </Link>
+                      <p>released: {el.release_date}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          })}
+          <button onClick={() => dispatch({ type: "fetching" })}>
+            Load More
+          </button>
+        </div>
       </MovieListWrapper>
     );
   }
   return <h1>Loading</h1>;
 }
+
 export default MovieList;
