@@ -96,7 +96,7 @@ function Movie(props) {
             <p>Overview:</p>
             <p>{state.movie.overview}</p>
             {state.movie.runtime ? (
-              <smaller>Length: {state.movie.runtime} min</smaller>
+              <p>Length: {state.movie.runtime} min</p>
             ) : null}
           </div>
         ) : null}

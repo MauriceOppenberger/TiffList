@@ -78,7 +78,7 @@ function MovieList() {
               <Link to={`/movie/${el.id}`}>
                 <h2>{el.title}</h2>
               </Link>
-              <smaller>released: {el.release_date}</smaller>
+              <p>released: {el.release_date}</p>
             </li>
           ))}
         </ul>

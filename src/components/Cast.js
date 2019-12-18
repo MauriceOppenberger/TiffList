@@ -63,7 +63,7 @@ export default function Cast(props) {
                   <Link to={`/movie/${el.id}`}>
                     <h2>{el.title}</h2>{" "}
                   </Link>
-                  <smaller>as: {el.character}</smaller>
+                  <p>as: {el.character}</p>
                 </li>
               ))
             : null}

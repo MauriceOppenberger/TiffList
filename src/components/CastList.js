@@ -55,7 +55,7 @@ export default function CastList({ id }) {
                 <Link to={`/cast/${el.credit_id}`}>
                   <h2>{el.name}</h2>
                 </Link>
-                <smaller>as: {el.character ? el.character : "unknown"}</smaller>
+                <p>as: {el.character ? el.character : "unknown"}</p>
               </li>
             );
           })}
