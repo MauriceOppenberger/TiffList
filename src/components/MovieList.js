@@ -40,6 +40,7 @@ function MovieList() {
 
   React.useEffect(() => {
     console.log("in effect");
+
     dispatch({ type: "fetching" });
     for (let i = 1; i <= 500; i++) {
       fetchMovies(i, year)
@@ -50,11 +51,12 @@ function MovieList() {
           dispatch({ type: "error", error });
         });
     }
-  }, []);
+  }, [year]);
   if (state.error) {
     return <h1>{state.error}</h1>;
   }
-  if (state.loading === false && state.movieList.length === 9999) {
+  console.log(state.movieList.length);
+  if (state.loading === false && state.movieList.length > 0) {
     const popularMovies = state.movieList.filter(
       movie => movie.popularity > 10
     );
