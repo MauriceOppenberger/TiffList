@@ -5,17 +5,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MovieListWrapper = styled.div`
-  /* .list {
-    display: flex;
-    flex-flow: row wrap;
-    margin: auto;
+  .btn-load {
+    padding: 8px 16px;
+    font-size: 19px;
+    font-weight: 500;
+    background: var(--primaryColor);
+    color: var(--mainWhite);
+    border-radius: 5px;
+    margin: 2rem 0;
+    min-width: 150px;
   }
-  .list-item {
-    flex: 1;
-    width: max-content;
-    min-width: 100%;
-    margin-bottom: 1rem;
-  } */
 `;
 
 function fetchReducer(state, action) {
@@ -93,7 +92,10 @@ function MovieList() {
               </ul>
             );
           })}
-          <button onClick={() => dispatch({ type: "fetching" })}>
+          <button
+            className="btn-load"
+            onClick={() => dispatch({ type: "fetching" })}
+          >
             Load More
           </button>
         </div>
